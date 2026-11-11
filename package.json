@@ -2,9 +2,12 @@
   "name": "caloriesbot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsc --watch"
   },
   "repository": {
     "type": "git",
@@ -13,7 +16,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Twiggyshine/caloriesBot/issues"
   },
@@ -21,7 +23,8 @@
   "dependencies": {
     "@google/genai": "^3.1.0",
     "dotenv": "^18.0.10",
-    "grammy": "^1.46.0"
+    "grammy": "^1.46.0",
+    "openai": "^7.55.0"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
