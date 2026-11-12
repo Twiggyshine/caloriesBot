@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
 import type { NutritionData } from './types.js';
 
-const apiKey = process.env.OPENROUTER_API_KEY;
-if (!apiKey) throw new Error("OPENROUTER_API_KEY не найден в .env");
+const apiKey = process.env.DEEPSEEK_API_KEY;
+if (!apiKey) throw new Error("DEEPSEEK_API_KEY не найден в .env");
 
 const openai = new OpenAI({
   baseURL: 'https://api.deepseek.com',
