@@ -5,7 +5,7 @@ const apiKey = process.env.OPENROUTER_API_KEY;
 if (!apiKey) throw new Error("OPENROUTER_API_KEY не найден в .env");
 
 const openai = new OpenAI({
-  baseURL: 'https://openrouter.ai/api/v1',
+  baseURL: 'https://api.deepseek.com',
   apiKey: apiKey,
   defaultHeaders: {
     'HTTP-Referer': 'https://t.me/CalDietBot ', 
@@ -27,7 +27,7 @@ const PROMPT = `Ты нутрициолог. На фото еда. Опреде�
 export async function analyzeFood(imageBuffer: Buffer): Promise<NutritionData> {
   try {
     const response = await openai.chat.completions.create({
-      model: 'google/gemini-2.0-flash-lite-preview-02-05:free', // Бесплатная модель с поддержкой картинок
+      model: 'deepseek-flash', 
       messages: [
         {
           role: 'user',
@@ -46,8 +46,7 @@ export async function analyzeFood(imageBuffer: Buffer): Promise<NutritionData> {
     });
 
     const text = response.choices[0]?.message?.content || "{}";
-    
-    const jsonMatch = text.match(/\{[\s\S]*\}/);
+const jsonMatch = text.match(/\{[\s\S]*\}/);
     return JSON.parse(jsonMatch ? jsonMatch[0] : "{}");
     
   } catch (error) {
